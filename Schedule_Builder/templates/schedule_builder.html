@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/style.css"/>
+    <link rel="stylesheet" href="/static/schedule_builder.css"/>
+</head>
+<body onload="defineAvailableClassList({{ class_list }}); displayAllClassList(); createCourseDropDownButton(); createAllTables();">
+
+<div class="topnav">
+    <a href="/home">Home</a>
+    <a href="/courses">Courses</a>
+    <a class="active" href="/schedule_builder">Schedule Builder</a>
+</div>
+
+<div id="container" class="container">
+
+    <div class="button_containers">
+        <div id="select_course_container" class="top_buttons search_bar_container" >
+        </div>
+
+        <div id="filter-button-container" class="top_buttons filter_button_container">
+            <div class="dropdown"><button class="dropbtn filter_button" onclick="displayFilters()">Filters</button>
+            </div>
+        </div>
+
+        <div id="add-course-container" class="top_buttons add_course_container">
+            <div class="dropdown"><button class="dropbtn add_course_button" onclick="displayCourseOptions()">Add course +</button>
+            </div>
+        </div>
+
+        <div id="create-schedule-container" class="top_buttons create_schedule_container">
+            <div class="dropdown"><button class="dropbtn create_schedule_button" onclick="displayScheduledCourses(); displayVisualSchedule()">Create schedule</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="add_course_options_container" class="select_container_hidden" style="">
+        <h2>Subject</h2>
+        <div class="select-box" onclick="">
+            <div class="options-container subject-options-container">
+                <div class="option subject-option">
+                    <input type="radio" class="radio" id="automobiles" name="category"/>
+                    <label for="automobiles">Automobiles</label>
+                </div>
+
+                <div class="option subject-option">
+                    <input type="radio" class="radio" id="film" name="category" />
+                    <label for="film">Film & Animation</label>
+                </div>
+
+                <div class="option subject-option">
+                    <input type="radio" class="radio" id="science" name="category" />
+                    <label for="science">Science & Technology</label>
+                </div>
+
+                <div class="option subject-option">
+                    <input type="radio" class="radio" id="art" name="category" />
+                    <label for="art">Art</label>
+                </div>
+
+                <div class="option subject-option">
+                    <input type="radio" class="radio" id="music" name="category" />
+                    <label for="music">Music</label>
+                </div>
+
+                <div class="option subject-option">
+                    <input type="radio" class="radio" id="travel" name="category" />
+                    <label for="travel">Travel & Events</label>
+                </div>
+
+                <div class="option subject-option">
+                    <input type="radio" class="radio" id="sports" name="category" />
+                    <label for="sports">Sports</label>
+                </div>
+
+                <div class="option subject-option">
+                    <input type="radio" class="radio" id="news" name="category" />
+                    <label for="news">News & Politics</label>
+                </div>
+
+                <div class="option subject-option">
+                    <input type="radio" class="radio" id="tutorials" name="category" />
+                    <label for="tutorials">Tutorials</label>
+                </div>
+            </div>
+
+            <div class="selected selected-subject">
+              Select Subject
+            </div>
+        </div>
+
+        <h2>Course</h2>
+        <div class="select-box">
+            <div class="options-container course-options-container">
+                <div class="option course-option">
+                    <input type="radio" class="radio" id="CS 4242" name="category"/>
+                    <label for="CS 4242">CS 4242</label>
+                </div>
+
+                <div class="option course-option">
+                    <input type="radio" class="radio" id="CS 4722" name="category" />
+                    <label for="CS 4722">CS 4722</label>
+                </div>
+
+                <div class="option course-option">
+                    <input type="radio" class="radio" id="CS 2400" name="category" />
+                    <label for="CS 2400">CS 2400</label>
+                </div>
+
+                <div class="option course-option">
+                    <input type="radio" class="radio" id="CS 3100" name="category" />
+                    <label for="CS 3100">CS 3100</label>
+                </div>
+
+                <div class="option course-option">
+                    <input type="radio" class="radio" id="CS 3005" name="category" />
+                    <label for="CS 3005">CS 3005</label>
+                </div>
+            </div>
+
+            <div id="selected_course" class="selected selected-course">
+              Select Course
+            </div>
+        </div>
+
+
+        <div class="add_course_selector_container">
+            <div class="dropdown inline_btn"><button class="dropbtn done_button" onclick="hideCourseOptions()">Done</button></div>
+            <div class="dropdown inline_btn"><button class="dropbtn add_button" onclick="addCourseToClassList();">Add course +</button></div>
+        </div>
+    </div>
+
+    <div id="empty_class_container" class="empty_class_container">
+        <div class="select_course_container">
+            <p>Add a course from above</p>
+        </div>
+    </div>
+
+    <div id="table_holder" class="table_holder">
+    </div>
+
+    <div id="option_container" class="option_container">
+        <div id="schedule_container" class="schedule_container">
+            <div class="option_titles">
+                <p class="title schedule" id="title_schedule" style="color: rgb(0, 119, 204); font-size: 12px;" onclick="displaySchedule()">Schedule</p>
+                <p class="title filter" id="title_filter" onclick="displayFilters()">Filter</p>
+            </div>
+        </div>
+
+        <div id="filter_container" class="filter_container" style="display:none">
+            <div class="option_titles">
+                <p class="title schedule" id="title_schedule" onclick="displaySchedule()">Schedule</p>
+                <p class="title filter" id="title_filter" style="color: rgb(0, 119, 204); font-size: 12px;" onclick="displayFilters()">Filter</p>
+            </div>
+
+            <div class="filters">
+                <h3 onclick="hideORshow('weekdays')" style="cursor:pointer">Days &#x25BE;</h3>
+                <div id="weekdays" style="display:none">
+                    <ul class="horizontal-list">
+                        <li id="0" class="" onclick="updateDays(0)">Sun</li>
+                        <li id="1" class="" onclick="updateDays(1)">Mon</li>
+                        <li id="2" class="" onclick="updateDays(2)">Tue</li>
+                        <li id="3" class="" onclick="updateDays(3)">Wed</li>
+                        <li id="4" class="" onclick="updateDays(4)">Thu</li>
+                        <li id="5" class="" onclick="updateDays(5)">Fri</li>
+                        <li id="6" class="" onclick="updateDays(6)">Sat</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="filters">
+                <h3 onclick="" style="cursor:pointer">Add a Break &#x25BE;</h3>
+                <div id="breaks_container" class="breaks_container" style="display:none">
+                    <div class="startTime">
+                        <label for="startTime-hour">Start Time</label>
+                        <select class="inline break_hours" id="startTime-hour">
+                            <option value="01">1</option>
+                            <option value="02">2</option>
+                            <option value="03">3</option>
+                            <option value="04">4</option>
+                            <option value="05">5</option>
+                            <option value="06">6</option>
+                            <option value="07">7</option>
+                            <option value="08">8</option>
+                            <option value="09">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                        <p class="inline">:</p>
+                        <select class="inline break_minutes" id="startTime-minute">
+                            <option value="00">00</option>
+                            <option value="05">05</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                            <option value="45">45</option>
+                            <option value="50">50</option>
+                            <option value="55">55</option>
+                        </select>
+                        <p id="startTime-am" class="inline" onclick="change_am_or_pm('startTime-am')" style="color:blue;cursor:pointer">am</p>
+                        <p id="startTime-pm" class="inline" onclick="change_am_or_pm('startTime-pm')" style="cursor:pointer">pm</p>
+                    </div>
+
+                    <div class="endTime">
+                        <label for="endTime-hour">End Time</label>
+                        <select class="inline break_hours" id="endTime-hour">
+                            <option value="01">1</option>
+                            <option value="02">2</option>
+                            <option value="03">3</option>
+                            <option value="04">4</option>
+                            <option value="05">5</option>
+                            <option value="06">6</option>
+                            <option value="07">7</option>
+                            <option value="08">8</option>
+                            <option value="09">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                        <p class="inline">:</p>
+                        <select class="inline break_minutes" id="endTime-minute">
+                            <option value="00">00</option>
+                            <option value="05">05</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                            <option value="45">45</option>
+                            <option value="50">50</option>
+                            <option value="55">55</option>
+                        </select>
+                        <p id="endTime-am" class="inline" onclick="change_am_or_pm('endTime-am')" style="color:blue;cursor:pointer">am</p>
+                        <p id="endTime-pm" class="inline" onclick="change_am_or_pm('endTime-pm')" style="cursor:pointer">pm</p>
+                    </div>
+                    <button class="add_break_button" onclick="updateBreaks()">Add</button>
+                </div>
+            </div>
+
+            <div class="filters">
+                <h3 onclick="hideORshow('campus_container')" style="cursor:pointer">Campus &#x25BE;</h3>
+                <div id="campus_container" class="campus_container" style="display:none">
+                    <form class="form">
+                        <div class="inputGroup">
+                            <input id="kennesaw_campus" name="Kennesaw Campus" onclick="updateCampuses('kennesaw_campus')" type="checkbox" checked/>
+                            <label for="kennesaw_campus">Kennesaw Campus</label>
+                        </div>
+                        <div class="inputGroup">
+                            <input id="marietta_campus" name="Marietta Campus" onclick="updateCampuses('marietta_campus')" type="checkbox" checked/>
+                            <label for="marietta_campus">Marietta Campus</label>
+                        </div>
+                        <div class="inputGroup">
+                            <input id="ksu_online" name="KSU Online" onclick="updateCampuses('ksu_online')" type="checkbox" checked/>
+                            <label for="ksu_online">KSU Online</label>
+                        </div>
+                        <div class="inputGroup">
+                            <input id="eCore" name="eCore" onclick="updateCampuses('eCore')" type="checkbox" checked/>
+                            <label for="eCore">eCore</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="filters">
+                <h3 onclick="hideORshow('rating_container')" style="cursor:pointer">Rating &#x25BE;</h3>
+                <div id="rating_container" class="rating_container" style="display:none">
+                    <div id="ratings">
+                        <ul class="horizontal-list">
+                            <li id="rating-1" class="" onclick="updateRatings(1)">1.0+</li>
+                            <li id="rating-2" class="" onclick="updateRatings(2)">2.0+</li>
+                            <li id="rating-3" class="" onclick="updateRatings(3)">3.0+</li>
+                            <li id="rating-4" class="" onclick="updateRatings(4)">4.0+</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filters" style="display:none;">
+                <h3>Course Status &#x25BE;</h3>
+                <div class="course_status_container"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<div class="titles">
+    <div id="filter_error_message" class="filter_error_message" style="display:none;">
+        <p>! One or more of your chosen class does not fit the parameters set by the filters</p>
+    </div>
+</div>
+
+
+
+<div id="scheduled_course_container">
+
+</div>
+
+<script src="/static/javascript/schedule_builder.js"></script>
+</body>
+</html>

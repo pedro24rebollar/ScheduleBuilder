@@ -1,0 +1,72 @@
+html, body {
+    /background-color: #318ae6;
+    background-color: #212121;
+    /background-color: #5c509c;
+    font-family: "Google Sans","Roboto","Arial",sans-serif;
+}
+
+header-strip {
+    /background: url(../graphics/menu-bar-colors.png) 0 0 repeat-x;
+    /background-color: pink;
+    background: linear-gradient(to right, blue, pink);
+    background: linear-gradient(to right, blue, pink, yellow, aqua);
+    background: linear-gradient(to right, blue, pink, yellow, aqua);
+    /background: linear-gradient(-45deg, #C1D72E, #DC582A, #C1D72E);
+    background-position: 100% 50%;
+    height: 5px;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    background-size: 400% 100%;
+    -webkit-animation: gradient-motion 15s ease infinite;
+    animation: gradient-motion 15s cubic-bezier(0.25, 0.1, 0.26, 0.97) infinite;
+}
+
+
+.owl {
+  position: absolute;
+  display: none;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  height: 250px;
+  width: 330px;
+}
+
+.banner {
+  position: absolute;
+  /display: none;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  height: 200px;
+  width: 500px;
+}
+
+.topnav {
+    /background-color: white;
+    box-shadow: 0 1px 11px rgba(131, 131, 131, 0.27);
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    padding: 14px 22px;
+    /color: #3c4043;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    /color: #1a73e8;
+    transition: color 350ms ease;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    /background-color: white;
+    /color: #1a73e8;
+}

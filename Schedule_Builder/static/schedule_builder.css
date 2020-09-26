@@ -1,0 +1,796 @@
+body{
+    background-color: #fefefe;
+}
+
+body {
+    /background-image: linear-gradient(to bottom right, #a3ced0, #bdbc7a);
+    /background-attachment: fixed;
+    /width: unset;
+    /height: unset;
+}
+
+.titles {
+    position: relative;
+    left: 50%;
+    width: 970px;
+    transform: translate(-50%);
+    margin: 5px;
+    margin-bottom: 15px;
+    font-family: var(--BlueConfigGlobalFontFamily,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol");
+    font-size: 11px;
+}
+
+.filter_error_message {
+    font-size: 12px;
+    padding-left: 0px;
+    padding: 1px;
+    padding-left: 20px;
+    background-color: hsl(0, 100%, 98%);
+    color: #f52323;
+}
+
+/* Container holds all the elements in the page and centers them */
+.container {
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translate(-50%);
+    margin: 0px;
+    /margin-top : 50px;
+    margin-bottom: 10px;
+    font-family: var(--BlueConfigGlobalFontFamily,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol");
+    font-size: 11px;
+    /padding-left: 50px;
+    /padding-right: 50px;
+    /background-image: linear-gradient(to bottom right, #a3ced0, #bdbc7a);
+}
+
+/*Top buttons ===================================== */
+
+button {
+  outline: none;
+  border: none;
+}
+
+.button_containers{
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.top_buttons {
+    font-weight: 600;
+    /box-shadow: 0 2px 8px 0 rgba(55, 86, 150, 0.09), 0 4px 32px 0 rgba(55, 86, 150, 0.09);
+    /border-radius: 6px;
+    /padding: 25px;
+    padding-right: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Course Search Bar */
+.search_bar_container {
+}
+
+/* Dropdown Button */
+.dropbtn {
+  position: relative;
+  display: inline-block;
+  background-color: #3498DB;
+  background-color: #2f3640;
+  border-radius: 5px;
+  color: white;
+  padding: 12px;
+  width: 160px;
+  /font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+    background-color: #414b57;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.filter_button{
+    /background-color: ;
+}
+
+.add_course_button{
+    /background-color: ;
+}
+
+.create_schedule_button{
+    background-color: #4CAF50;
+    background-color: #2f3640;
+    background-color: #3498DB;
+}
+
+.create_schedule_button:hover{
+    background-color: #3d9c41;
+    background-color: #414b57;
+    background-color: #2980B9;
+}
+
+/* If the screen size gets below 1000px, then take off the centering */
+@media all and (max-width: 1000px) {
+    .container{
+        left: 10px;
+        transform: translate(0%);
+        min-width: 1000px;
+    }
+}
+
+/* Adding course select dropdown option ============================================================================ */
+.select_container_hidden {
+  transition: visibility 0s linear 300ms, opacity 300ms;
+  max-height: 0px;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.select_container_active {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  background-color: #f7f6ff;
+  background-color: #f7f7f7;
+  background-color: #f8f8f9;
+  /border: 2px solid #dae7f5;
+  border-radius: 5px;
+  max-height: 100%;
+  opacity: 1;
+  overflow: hidden;
+  transition: all .8s;
+  transition: visibility 0s linear 0s, opacity 500ms;
+}
+
+.select_container_active h2 {
+  font-size: 16px;
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+
+.select-box {
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+}
+
+.select-box .options-container {
+  background: #2f3640;
+  color: #f5f6fa;
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 8px;
+  overflow: hidden;
+
+  order: 1;
+}
+
+.selected {
+  background: #2f3640;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: #f5f6fa;
+  position: relative;
+
+  order: 0;
+}
+
+.selected::after {
+  content: "";
+  background: url("images/arrow-down.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  position: absolute;
+  height: 100%;
+  width: 23px;
+  right: 10px;
+  top: 8px;
+
+  transition: all 0.4s;
+}
+
+.select-box .options-container.active {
+  max-height: 240px;
+  opacity: 1;
+  overflow-y: scroll;
+}
+
+.select-box .options-container.active + .selected::after {
+  transform: rotateX(180deg);
+  top: -6px;
+}
+
+.select-box .options-container::-webkit-scrollbar {
+  width: 8px;
+  background: #0d141f;
+  border-radius: 0 8px 8px 0;
+}
+
+.select-box .options-container::-webkit-scrollbar-thumb {
+  background: #525861;
+  border-radius: 0 8px 8px 0;
+}
+
+.select-box .option,
+.selected {
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.select-box .option:hover {
+  background: #414b57;
+}
+
+.select-box label {
+  cursor: pointer;
+}
+
+.select-box .option .radio {
+  display: none;
+}
+
+/* Add course selector buttons */
+.add_course_selector_container {
+  margin-top: 10px;
+}
+
+.inline_btn {
+  display: inline;
+  margin-right: 75px;
+}
+
+.add_button{
+    background-color: #4CAF50;
+}
+
+.add_button:hover {
+    background-color: #3d9c41;
+}
+
+.done_button{
+    background-color: #ff4743;
+    background-color: #777777;
+    background-color: #333333;
+}
+
+.done_button:hover{
+    background-color: #404040;
+}
+/* Container for when there are no class tables to display */
+.empty_class_container{
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 750px;
+    height: 200px;
+
+    background-color: white;
+    background-color: #f5f5f5;
+    /box-shadow: 0 2px 8px 0 rgba(55, 86, 150, 0.09), 0 4px 32px 0 rgba(55, 86, 150, 0.09);
+    border-radius: 1px;
+    /border: 1px solid hotpink;
+    /border: 1px solid hsl(188, 90%, 45%);
+    /border:  1px solid hsl(267, 100%, 58%);
+}
+
+.select_course_container{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    padding: 10px;
+
+    /background-color: #ffffff;
+    /box-shadow: 0 2px 8px 0 rgba(55, 86, 150, 0.09), 0 4px 32px 0 rgba(55, 86, 150, 0.09);
+    border: 2px dashed #afafaf;
+    /border: 2px dashed hsl(188, 90%, 45%);
+}
+
+.select_course_container p{
+    text-align: center;
+    margin: 0px;
+    font-size: 15px;
+}
+
+/* Table container, used to have the containers display inline */
+.table_holder{
+    float: left;
+    margin-top: 20px;
+}
+
+/* Table styling ================================================================================================= */
+.course_table {
+    font-weight: 600;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    /box-shadow: 0 2px 8px 0 rgba(103,151,255,.09), 0 4px 32px 0 rgba(103,151,255,.09);
+    box-shadow: 0 2px 8px 0 rgba(55, 86, 150, 0.09), 0 4px 32px 0 rgba(55, 86, 150, 0.09);
+    border-radius: 6px;
+    border-spacing: 0px;
+    padding-left: 15px;
+    padding-right: 45px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    position: relative;
+    width: 650px;
+    width: 750px;
+    margin-bottom: 30px;
+    /float: left;
+    /border: 1px solid hotpink;
+    /border: 1px solid hsl(188, 90%, 45%);
+    /border:  1px solid hsl(267, 100%, 58%);
+    transition: visibility 0s linear 0s, opacity 500ms;
+}
+
+th {
+    color: #414141;
+    color: #636363;
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+td {
+    color: rgb(114, 128, 142);
+    color: rgb(130, 134, 138);
+    color: #666;
+    color: #7e7e7e;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: "Google Sans","Roboto","Arial",sans-serif;
+    font-weight: 400;
+}
+
+td:hover {
+    /outline: 1px solid hsl(267, 100%, 58%);
+}
+
+tr {
+  /box-shadow: 0 1px 0 #f2f2f2;
+  /border-bottom: 1px solid #f2f2f2;
+  -webkit-transition: 200ms all cubic-bezier(.4,0,.2,1);
+  transition: 200ms all cubic-bezier(.4,0,.2,1);
+}
+
+tr:hover{
+    /background-color: #eaeaea;
+    /background-color: #f2f2f2;
+    /background-color: #fafafa;
+    background-color: hsl(327, 100%, 99%);
+    background-color: hsl(327, 100%, 98%);
+    /outline: 1px solid hotpink;
+    /outline: 1px solid hsl(267, 100%, 58%);
+    cursor: pointer;
+}
+
+.course_name_row th:first-child {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    white-space: nowrap;
+    white-space: break-word;
+    max-width: 80px;
+    width: 80px;
+    height: 5px;
+}
+
+.course_name{
+    font-size: 12px;
+    color: #414141;
+    color: black;
+    display: inline;
+}
+
+.section_text {
+    font-size: 12px;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #afafaf;
+    display: inline;
+}
+
+/* Different types of row classes -----------------------  */
+.row_title:hover{
+    background-color: unset;
+}
+
+.row_selected {
+    background-color: #e2fcff;
+    /background-color: #fffafa;
+    /background-color: hsl(294, 37%, 97%);
+    /outline: 1px solid hsl(267, 100%, 58%);
+    /background-color: hsl(327, 100%, 99%);
+    /outline: 1px solid hotpink;
+    /background-color: hsl(194, 76%, 98%);
+    /outline: 1px solid hsl(188, 90%, 49%);
+    /background-color: hsl(39, 76%, 98%);
+    /outline: 1px solid hsl(27, 90%, 49%);
+    /background-color: hsl(144, 76%, 98%);
+    /outline: 1px solid hsl(150, 90%, 49%);
+    /background-color: hsl(156, 76%, 98%);
+    /outline: 1px solid hsl(174, 90%, 49%);
+
+     background-color: hsl(144, 100%, 97%);
+     background: rgba(0,105,255,.05);
+     /outline: 1px solid #0069ff;
+}
+
+.row_selected:hover{
+     background: rgba(0,105,255,.05);
+}
+
+.redRow {
+     background-color: hsl(0, 100%, 98%);
+}
+
+.row_selected td{
+  color: white;
+  color: #3a3a3a;
+  /color: #0069ff;
+  color: #2379f5;
+  color: #6799e0;
+}
+
+.redRow td{
+   color: #f52323;
+}
+
+.conflicting_time{
+    background-color: #eeeeee;
+}
+
+.conflicting_time:hover{
+  background-color: #f0f0f0;
+}
+
+.unselected_filter {
+    background-color: #eeeeee;
+}
+
+.unselected_filter:hover{
+  background-color: #f0f0f0;
+}
+
+/* Container for option menu to the right of the table =========================================================== */
+/* This displays either your classes or filter options */
+.option_container {
+    display: inline-block;
+    text-align: center;
+    float: left;
+    /max-width: 180px;
+    width: 180px;
+    min-height: 100px;
+    margin-left: 20px;
+    margin-top: 20px;
+
+    background-color: white;
+    box-shadow: 0 1px 11px rgba(131, 131, 131, 0.27);
+    box-shadow: 0 2px 8px 0 rgba(55, 86, 150, 0.09), 0 4px 32px 0 rgba(55, 86, 150, 0.09);
+    border-radius: 6px;
+    /border: 1px solid hotpink;
+    /border: 1px solid hsl(188, 90%, 45%);
+    /border:  1px solid hsl(267, 100%, 58%);
+}
+
+
+/* Either schedule or filter options */
+.title {
+    font-weight: 600;
+    color: #b0b0b0;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.schedule {
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+.filter {
+    cursor: pointer;
+}
+
+/* Contains each individual class */
+.course_container {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    /background-color: white;
+    /box-shadow: 0 1px 11px rgba(131, 131, 131, 0.27);
+    /border-radius: 1px;
+    /padding-left: 10px;
+    /padding-right: 60px;
+    /padding-top: 20px;
+    /padding-bottom: 20px;
+}
+
+.course_div {
+}
+
+li {
+    list-style-type: none;
+    left: 0;
+    line-height: 1rem;
+    text-align: left;
+    /border-bottom: 1px solid #f4f4f4;
+}
+
+li::before {
+  content: "";
+  background: url("images/arrow-down.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  /background-color: blue;
+
+  position: absolute;
+  /position: relative;
+  height: 25px;
+  width: 25px;
+  right: 55px;
+  /top: 150px;
+
+  transition: all 0.4s;
+}
+
+li:hover::before {
+  background-color: blue;
+}
+
+/* This is the blue circle/avatar displayed for each class */
+.avatar {
+    background-color: #2196F3;
+    /background-color: #f3c621;
+    /background-color: #E6654A;
+    /background-color: #f17055;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    box-shadow: 0 2px 8px 0 rgba(55, 86, 150, 0.09), 0 4px 32px 0 rgba(55, 86, 150, 0.09);
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+    top: 10px;
+    left: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 20px;
+    //padding-top: 5px;
+    font-size: 13px;
+    color: #2196F3;
+    text-align: center;
+    border-radius: 50%;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+/* These classes contains the text info for the class (Artificial Intelligence, Marrieta campus, TR 6:00 pm - 7:15pm) */
+span {
+    color: #333;
+    color: black;
+    /font-weight: 600;
+    font-size: 13px;
+    /color: rgb(0, 119, 204);
+}
+
+.campus {
+    /font-weight: 600;
+    margin: 0;
+    color: #93939a;
+    /color: rgb(114, 128, 142);
+}
+
+.time {
+    margin: 0;
+    color: #43464b;
+}
+
+p {
+  text-align: left;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 2px;
+  background-color: #f4511e;
+  background-color: hsl(267, 100%, 58%);
+  background-color: #709cff;
+  /box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 12.5px;
+  padding: 12px;
+  width: 160px;
+  width: 90%;
+  /transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #4a71fd;
+}
+/*
+    transition: all 550ms cubic-bezier(0.23, 1, 0.32, 1) 0s;
+    transition-property: all;
+    transition-duration: 550ms;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    transition-delay: 0s;
+*/
+
+.filter_container{
+     padding: 1px 10px;
+}
+
+.filters {
+     margin-bottom: 20px;
+}
+
+.horizontal-list {
+     max-width: 156px;
+     /min-width: 100px;
+     /width: 156px;
+     display: flex;
+     padding-left: 0;
+     list-style: none;
+     border-radius: .25rem;
+     font-size: 10px;
+     /font-weight: bold;
+}
+
+.horizontal-list li{
+   position: relative;
+   display: block;
+   width: 100%;
+   text-align: center;
+   padding: .3rem;
+   margin-left: -1px;
+   line-height: 1.25;
+   color: #007bff;
+   background-color: #fff;
+   border: 1px solid #dee2e6;
+   cursor: pointer;
+}
+
+.horizontal-list li:hover {
+    background-color: #eee;
+    /font-weight: bold;
+    border: 1px solid white;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.horizontal-list .li-unselected {
+    background-color: #eee;
+    color: #565656;
+    /font-weight: bold;
+    border: 1px solid white;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Time picker */
+.breaks_container {
+    /text-align: left;
+    padding-left: 10px;
+    font-weight: 600;
+    color: #7f7f7f;
+}
+
+.startTime{
+  padding-bottom: 7px;
+}
+
+.endTime{
+  padding-bottom: 7px;
+}
+
+label {
+  padding-right: 5px;
+}
+
+.add_break_button{
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 1px;
+    padding: 5px 15px;
+    font-family: "Google Sans","Roboto","Arial",sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    color: #2d2d2d;
+}
+
+.add_break_button:hover {
+  background-color: white;
+  cursor: pointer;
+}
+
+
+select {
+  font-size: 11px;
+}
+
+.inline {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+/* Campuses */
+.campus_container {
+  text-align: left;
+  padding-left: 15px;
+}
+
+.scheduled_course_container{
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translate(-50%);
+    margin: 5px;
+    /margin-top : 50px;
+    margin-bottom: 50px;
+    font-family: var(--BlueConfigGlobalFontFamily,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol");
+    font-size: 11px;
+}
+
+.scheduled_course_table{
+    font-weight: 600;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    /box-shadow: 0 2px 8px 0 rgba(103,151,255,.09), 0 4px 32px 0 rgba(103,151,255,.09);
+    box-shadow: 0 2px 8px 0 rgba(55, 86, 150, 0.09), 0 4px 32px 0 rgba(55, 86, 150, 0.09);
+    border-radius: 6px;
+    border-spacing: 0px;
+    padding-left: 15px;
+    padding-right: 45px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    position: relative;
+    width: 980px;
+    margin-bottom: 30px;
+    /float: left;
+    /border: 1px solid hotpink;
+    /border: 1px solid hsl(188, 90%, 45%);
+    /border:  1px solid hsl(267, 100%, 58%);
+}
+
+.cell-align-left{
+  width: 55%;
+  padding-left: 100%;
+  transform: translate(-50%);
+  text-align: left;
+}

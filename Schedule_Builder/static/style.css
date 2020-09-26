@@ -1,0 +1,149 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #fefefe;
+    font-family: "Google Sans","Roboto","Arial",sans-serif;
+}
+
+body:before {
+    /background: #474e5d;
+    /background: #2b2b2b;
+    height: 18%;
+    width: 100%;
+    position: absolute;
+    content: "";
+}
+
+img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  height: 19px;
+  width: 19px;
+}
+
+.topnav {
+    background-color: #333;
+    /background-color: rgb(254, 188, 17);
+    /background-color: #2885FF;
+    /background-color: #524f63;
+
+    /background-color: white;
+    box-shadow: 0 1px 11px rgba(131, 131, 131, 0.27);
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px 22px;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+
+    padding: 12px 22px;
+    /color: #3c4043;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    /background-color: #ddd;
+    color: #C0C0C0;
+    /color: #1a73e8;
+    transition: color 350ms ease;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #4CAF50;
+    background-color: #ff4743;
+    background-color: rgb(60, 118, 205);
+    background-color: #4aa098;
+    background-color: #76728e;
+    /background-color: black;
+    color: white;
+    /background-color: white;
+    /color: #1a73e8;
+}
+
+.inline {
+    display: inline;
+}
+
+h3 {
+    text-align: left;
+    font-family: "Google Sans","Roboto","Arial",sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #666;
+    /color: #5b5bed;
+}
+
+/* Select */
+select {
+    width: 50px;
+    height: 20px;
+    padding: 2px 12px;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+select:focus {
+    outline: none;
+}
+
+/* Input */
+form {
+  padding: 0 16px;
+  /font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  line-height: 22px;
+}
+
+.inputGroup {
+  margin: 10px 0;
+  position: relative;
+}
+
+/* The checkbox */
+.inputGroup label:after {
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  content: '';
+  border: 1.0px solid #D1D7DC;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
+  background-repeat: no-repeat;
+  background-position: 0px 1px;
+  border-radius: 3px;
+  position: absolute;
+  left: -25px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  cursor: pointer;
+  -webkit-transition: all 150ms ease-in;
+  transition: all 150ms ease-in;
+}
+
+.inputGroup input:checked ~ label:after {
+  /background-color: #ff7d7d;
+  /border-color: #ff7d7d;
+
+  background-color: #3a89ff;
+  border-color: #3a89ff;
+}
+
+.inputGroup input {
+  display: none;
+}
