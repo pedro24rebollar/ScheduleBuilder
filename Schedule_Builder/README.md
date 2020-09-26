@@ -7,6 +7,8 @@ This application will provide features which includes:
 * Intuitive design for creating schedules (features below)
 * Generating a display for the users selected schedule (with times and days of the classes)
 
+![Alt text](static/images/Schedule_Builder_Image.png)
+
 ## To Run
 
 ```python
